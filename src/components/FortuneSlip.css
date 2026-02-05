@@ -1,0 +1,104 @@
+.fortune-slip-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    animation: slipSlideOut 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    margin-top: -80px;
+    /* Overlap with the cookie */
+    z-index: 0;
+    perspective: 1000px;
+}
+
+.fortune-paper {
+    background: #fffaf0;
+    /* Warm white */
+    width: 280px;
+    /* Slimmer traditional look */
+    padding: 2.5rem 1.5rem;
+    border: 1px solid #dcd7cd;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    font-family: 'Gowun Batang', serif;
+    position: relative;
+    transform: rotate(-1deg);
+    background-image: linear-gradient(to bottom, transparent 96%, #e5e5e5 96%);
+    /* Lined paper hint */
+    background-size: 100% 2rem;
+}
+
+/* Red stamp decoration */
+.fortune-paper::before {
+    content: '福';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #d94844;
+    color: #d94844;
+    font-size: 1.2rem;
+    line-height: 26px;
+    font-weight: bold;
+    border-radius: 4px;
+    opacity: 0.6;
+    transform: rotate(15deg);
+}
+
+.fortune-header {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.fortune-text {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    word-break: keep-all;
+    /* Better Korean wrapping */
+}
+
+.lucky-numbers {
+    font-size: 0.9rem;
+    color: #64748b;
+    border-top: 1px dotted #cbd5e1;
+    padding-top: 1rem;
+    font-family: monospace;
+}
+
+.reset-btn {
+    background: #d94844;
+    /* Red button */
+    border: none;
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(217, 72, 68, 0.3);
+    transition: all 0.2s;
+    font-family: var(--font-main);
+}
+
+.reset-btn:hover {
+    background: #be123c;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(217, 72, 68, 0.4);
+}
+
+@keyframes slipSlideOut {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.9) rotateX(20deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(120px) scale(1) rotateX(0);
+    }
+}

@@ -1,0 +1,47 @@
+:root {
+  /* Traditional Korean Colors (Obangsak inspired but muted for elegance) */
+  --color-bg: #fdfbf7;
+  /* Warm Hanji paper */
+  --color-text: #2c2420;
+  /* Dark ink */
+  --color-primary: #d94844;
+  /* Traditional Red */
+  --color-secondary: #2c5f78;
+  /* Traditional Blue */
+  --color-accent: #e5b945;
+  /* Gold/Yellow */
+  --color-paper: #ffffff;
+
+  --font-main: 'Gowun Batang', 'Noto Serif KR', serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  background-image:
+    radial-gradient(#e5e5e5 1px, transparent 1px),
+    radial-gradient(#e5e5e5 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  color: var(--color-text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#root {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
