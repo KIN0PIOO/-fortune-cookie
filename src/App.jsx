@@ -35,7 +35,7 @@ function App() {
       <div className="pattern-overlay"></div>
       <header>
         <div className="korean-knot"></div>
-        <h1>포츈 쿠키</h1>
+        <h1>제조서비스2본부 포츈쿠키 EVENT</h1>
         <p className="subtitle">쿠키를 클릭하여 행운을 확인해 보세요</p>
       </header>
 
