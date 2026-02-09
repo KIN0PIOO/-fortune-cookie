@@ -2,103 +2,174 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
-    animation: slipSlideOut 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    margin-top: -80px;
-    /* Overlap with the cookie */
-    z-index: 0;
-    perspective: 1000px;
-}
-
-.fortune-paper {
-    background: #fffaf0;
-    /* Warm white */
-    width: 280px;
-    /* Slimmer traditional look */
-    padding: 2.5rem 1.5rem;
-    border: 1px solid #dcd7cd;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-    text-align: center;
-    font-family: 'Gowun Batang', serif;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
     position: relative;
-    transform: rotate(-1deg);
-    background-image: linear-gradient(to bottom, transparent 96%, #e5e5e5 96%);
-    /* Lined paper hint */
-    background-size: 100% 2rem;
+    z-index: 10;
+    animation: fadeIn 0.5s ease;
 }
 
-/* Red stamp decoration */
-.fortune-paper::before {
-    content: '福';
+/* 깨진 쿠키 표시 영역 */
+.broken-cookie-display {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    /* 바닥(그림자)에 붙도록 설정 */
+    gap: 15px;
+    /* 반 조각 사이의 적절한 간격 */
+    margin-bottom: 20px;
+    width: 100%;
+    height: 160px;
+    position: relative;
+}
+
+/* 바닥 그림자 */
+.cookie-shadow {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 30px;
-    height: 30px;
-    border: 2px solid #d94844;
-    color: #d94844;
-    font-size: 1.2rem;
-    line-height: 26px;
-    font-weight: bold;
+    width: 140px;
+    height: 15px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: blur(6px);
+    z-index: 5;
+}
+
+.broken-half {
+    width: 100px;
+    height: 150px;
+    position: relative;
+    z-index: 10;
+    /* 그림자 위에 위치 */
+    overflow: visible;
+}
+
+.broken-half .cookie-img-container {
+    position: absolute;
+    top: 0;
+}
+
+.broken-half.left .cookie-img-container {
+    left: 0;
+}
+
+.broken-half.right .cookie-img-container {
+    left: -100px;
+}
+
+/* 애니메이션 개선 (더 탄력 있는 움직임) */
+.broken-half.left {
+    transform: rotate(-12deg) translateX(-5px);
+    animation: bounceLeft 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+.broken-half.right {
+    transform: rotate(12deg) translateX(5px);
+    animation: bounceRight 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes bounceLeft {
+    from {
+        transform: rotate(0) translateX(40px) translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: rotate(-12deg) translateX(-5px) translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bounceRight {
+    from {
+        transform: rotate(0) translateX(-40px) translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: rotate(12deg) translateX(5px) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* 운세 결과 용지 */
+.fortune-paper {
+    background: #fff;
+    padding: 30px;
     border-radius: 4px;
-    opacity: 0.6;
-    transform: rotate(15deg);
+    /* 각진 종이 느낌 */
+    width: 85%;
+    text-align: center;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 5;
+    background-image: linear-gradient(#f9f9f9 1px, transparent 1px);
+    background-size: 100% 2.5rem;
+    animation: slideUpFade 0.7s ease-out 0.2s both;
 }
 
 .fortune-header {
-    font-size: 0.9rem;
-    color: #94a3b8;
-    margin-bottom: 1.5rem;
-    letter-spacing: 2px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #8b4513;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #8b4513;
+    display: inline-block;
+    padding-bottom: 5px;
 }
 
 .fortune-text {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #1e293b;
-    margin-bottom: 2rem;
-    line-height: 1.6;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 25px;
     word-break: keep-all;
-    /* Better Korean wrapping */
 }
 
 .lucky-numbers {
-    font-size: 0.9rem;
-    color: #64748b;
-    border-top: 1px dotted #cbd5e1;
-    padding-top: 1rem;
-    font-family: monospace;
+    font-size: 0.95rem;
+    color: #777;
+    margin-bottom: 30px;
 }
 
 .reset-btn {
-    background: #d94844;
-    /* Red button */
+    background: #333;
+    color: #fff;
     border: none;
-    color: white;
-    padding: 0.8rem 2rem;
-    border-radius: 2rem;
+    padding: 10px 25px;
+    border-radius: 4px;
     cursor: pointer;
-    font-weight: bold;
-    font-size: 1rem;
-    box-shadow: 0 4px 10px rgba(217, 72, 68, 0.3);
+    font-size: 0.9rem;
     transition: all 0.2s;
-    font-family: var(--font-main);
 }
 
 .reset-btn:hover {
-    background: #be123c;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(217, 72, 68, 0.4);
+    background: #555;
+    transform: translateY(-1px);
 }
 
-@keyframes slipSlideOut {
-    0% {
+@keyframes slideUpFade {
+    from {
+        transform: translateY(30px);
         opacity: 0;
-        transform: translateY(40px) scale(0.9) rotateX(20deg);
     }
 
-    100% {
+    to {
+        transform: translateY(0);
         opacity: 1;
-        transform: translateY(120px) scale(1) rotateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
     }
 }

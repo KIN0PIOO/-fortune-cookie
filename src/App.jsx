@@ -35,25 +35,27 @@ function App() {
       <div className="pattern-overlay"></div>
       <header>
         <div className="korean-knot"></div>
-        <h1>신년 운세</h1>
-        <p className="subtitle">올해의 행운을 확인해보세요</p>
+        <h1>포츈 쿠키</h1>
+        <p className="subtitle">쿠키를 클릭하여 행운을 확인해 보세요</p>
       </header>
 
       <main className="game-area">
-        <div className={`cookies-grid ${gameState !== 'CHOOSING' ? 'focused' : ''}`}>
-          {[1, 2, 3].map((id) => {
-            if (gameState !== 'CHOOSING' && selectedId !== id) return null;
+        {gameState !== 'REVEALED' && (
+          <div className={`cookies-grid ${gameState !== 'CHOOSING' ? 'focused' : ''}`}>
+            {[1, 2, 3].map((id) => {
+              if (gameState !== 'CHOOSING' && selectedId !== id) return null;
 
-            return (
-              <div key={id} className={`cookie-wrapper ${selectedId === id ? 'active' : ''}`}>
-                <Cookie
-                  isOpen={selectedId === id && gameState !== 'CHOOSING'}
-                  onClick={() => handleCookieClick(id)}
-                />
-              </div>
-            );
-          })}
-        </div>
+              return (
+                <div key={id} className={`cookie-wrapper ${selectedId === id ? 'active' : ''}`}>
+                  <Cookie
+                    isOpen={selectedId === id && gameState !== 'CHOOSING'}
+                    onClick={() => handleCookieClick(id)}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        )}
 
         {gameState === 'REVEALED' && (
           <FortuneSlip message={fortune} onReset={handleReset} />
