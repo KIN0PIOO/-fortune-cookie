@@ -4,10 +4,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 1rem;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   position: relative;
   z-index: 1;
+  overflow-x: hidden;
 }
 
 /* Decorative background overlay */
@@ -93,13 +96,37 @@ footer {
 }
 
 @media (max-width: 600px) {
-  .cookies-grid {
-    flex-direction: column;
-    gap: 4rem;
-    perspective: none;
+  .App {
+    padding: 0.5rem;
+  }
+
+  header {
+    margin-bottom: 2rem;
   }
 
   h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .cookies-grid {
+    flex-direction: row;
+    /* 세로 대신 가로 유지 */
+    gap: 1rem;
+    /* 간격 축소 */
+    transform: scale(0.8);
+    /* 전체적으로 축소 */
+  }
+
+  .cookies-grid.focused {
+    transform: translateY(-10px) scale(1);
+    gap: 0;
+  }
+
+  .game-area {
+    min-height: 300px;
   }
 }

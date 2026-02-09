@@ -138,3 +138,32 @@
         opacity: 0;
     }
 }
+
+/* 모바일 대응 */
+@media (max-width: 600px) {
+    .cookie-3d-container {
+        width: 120px;
+        height: 120px;
+    }
+
+    .cookie-half {
+        width: 60px;
+        height: 120px;
+    }
+
+    .cookie-img-container {
+        width: 120px;
+        height: 120px;
+    }
+
+    .cookie-img-container.right {
+        left: -60px;
+    }
+
+    .shadow {
+        width: 80px;
+        height: 15px;
+        left: 20px;
+        bottom: 10px;
+    }
+}
