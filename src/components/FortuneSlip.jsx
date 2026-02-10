@@ -2,9 +2,10 @@ import React from 'react';
 import './FortuneSlip.css';
 import { LeftCookieHalf, RightCookieHalf } from './Cookie';
 
-const FortuneSlip = ({ message, onReset }) => {
+const FortuneSlip = ({ message, userName, onReset }) => {
     return (
         <div className="fortune-slip-container">
+            <div className="user-name-tag">{userName}님의 운세</div>
             {/* Broken Cookie Section (Top) - Reusing the image components */}
             <div className="broken-cookie-display">
                 <div className="broken-half left">
@@ -24,7 +25,7 @@ const FortuneSlip = ({ message, onReset }) => {
             <div className="fortune-paper">
                 <div className="fortune-header">운세</div>
                 <div className="fortune-text">
-                    "{message}"
+                    "{userName}님의 올해는 {message}"
                 </div>
                 <div className="lucky-numbers">
                     행운의 숫자: {(() => {

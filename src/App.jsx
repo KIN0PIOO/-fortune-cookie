@@ -5,9 +5,16 @@ import Cookie from './components/Cookie'
 import FortuneSlip from './components/FortuneSlip'
 
 function App() {
-  const [gameState, setGameState] = useState('CHOOSING'); // CHOOSING, CRACKING, REVEALED
+  const [gameState, setGameState] = useState('ENTERING_NAME'); // ENTERING_NAME, CHOOSING, CRACKING, REVEALED
+  const [userName, setUserName] = useState('');
   const [selectedId, setSelectedId] = useState(null);
   const [fortune, setFortune] = useState(null);
+
+  const handleStart = (name) => {
+    if (!name.trim()) return;
+    setUserName(name);
+    setGameState('CHOOSING');
+  };
 
   const handleCookieClick = (id) => {
     if (gameState !== 'CHOOSING') return;
@@ -25,7 +32,8 @@ function App() {
   };
 
   const handleReset = () => {
-    setGameState('CHOOSING');
+    setGameState('ENTERING_NAME');
+    setUserName('');
     setSelectedId(null);
     setFortune(null);
   };
@@ -40,7 +48,27 @@ function App() {
       </header>
 
       <main className="game-area">
-        {gameState !== 'REVEALED' && (
+        {gameState === 'ENTERING_NAME' && (
+          <div className="name-input-container">
+            <input
+              type="text"
+              placeholder="이름을 입력해주세요"
+              className="name-input"
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') handleStart(e.target.value);
+              }}
+              autoFocus
+            />
+            <button
+              className="start-btn"
+              onClick={(e) => handleStart(e.target.previousSibling.value)}
+            >
+              운세 보러가기
+            </button>
+          </div>
+        )}
+
+        {gameState !== 'REVEALED' && gameState !== 'ENTERING_NAME' && (
           <div className={`cookies-grid ${gameState !== 'CHOOSING' ? 'focused' : ''}`}>
             {[1, 2, 3].map((id) => {
               if (gameState !== 'CHOOSING' && selectedId !== id) return null;
@@ -58,7 +86,7 @@ function App() {
         )}
 
         {gameState === 'REVEALED' && (
-          <FortuneSlip message={fortune} onReset={handleReset} />
+          <FortuneSlip message={fortune} userName={userName} onReset={handleReset} />
         )}
       </main>
 
