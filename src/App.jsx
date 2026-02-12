@@ -32,8 +32,7 @@ function App() {
   };
 
   const handleReset = () => {
-    setGameState('ENTERING_NAME');
-    setUserName('');
+    setGameState('CHOOSING');
     setSelectedId(null);
     setFortune(null);
   };
