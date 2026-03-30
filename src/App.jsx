@@ -3,6 +3,7 @@ import './App.css'
 import { fortunes } from './data/fortunes'
 import Cookie from './components/Cookie'
 import FortuneSlip from './components/FortuneSlip'
+import CherryBlossomPetals from './components/CherryBlossomPetals'
 
 function App() {
   const [gameState, setGameState] = useState('ENTERING_NAME'); // ENTERING_NAME, CHOOSING, CRACKING, REVEALED
@@ -39,6 +40,7 @@ function App() {
 
   return (
     <div className="App">
+      <CherryBlossomPetals />
       <div className="pattern-overlay"></div>
       <header>
         <div className="cherry-blossom">🌸</div>
