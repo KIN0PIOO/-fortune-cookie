@@ -41,8 +41,8 @@ function App() {
     <div className="App">
       <div className="pattern-overlay"></div>
       <header>
-        <div className="korean-knot"></div>
-        <h1>AX 포츈쿠키 EVENT</h1>
+        <div className="cherry-blossom">🌸</div>
+        <h1>봄맞이 포츈쿠키 EVENT</h1>
         <p className="subtitle">쿠키를 클릭하여 행운을 확인해 보세요</p>
       </header>
 
@@ -90,7 +90,7 @@ function App() {
       </main>
 
       <footer>
-        <p>새해 복 많이 받으세요</p>
+        <p>따뜻한 봄날, 당신만의 행운을 확인하세요 🌸</p>
       </footer>
     </div>
   )

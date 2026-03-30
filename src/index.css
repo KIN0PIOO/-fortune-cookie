@@ -1,15 +1,15 @@
 :root {
-  /* Traditional Korean Colors (Obangsak inspired but muted for elegance) */
-  --color-bg: #fdfbf7;
-  /* Warm Hanji paper */
-  --color-text: #2c2420;
-  /* Dark ink */
-  --color-primary: #d94844;
-  /* Traditional Red */
-  --color-secondary: #2c5f78;
-  /* Traditional Blue */
-  --color-accent: #e5b945;
-  /* Gold/Yellow */
+  /* Spring Cherry Blossom Colors */
+  --color-bg: #fff0f5;
+  /* Lavender blush / pale pink */
+  --color-text: #5c3a45;
+  /* Dark warm brown/pink */
+  --color-primary: #ffb7c5;
+  /* Cherry blossom pink */
+  --color-secondary: #ff91a4;
+  /* Deeper pink */
+  --color-accent: #ffd1dc;
+  /* Light pink */
   --color-paper: #ffffff;
 
   --font-main: 'Gowun Batang', 'Noto Serif KR', serif;
@@ -27,8 +27,8 @@ body {
   font-family: var(--font-main);
   background-color: var(--color-bg);
   background-image:
-    radial-gradient(#e5e5e5 1px, transparent 1px),
-    radial-gradient(#e5e5e5 1px, transparent 1px);
+    radial-gradient(#ffd1dc 1px, transparent 1px),
+    radial-gradient(#ffd1dc 1px, transparent 1px);
   background-size: 20px 20px;
   background-position: 0 0, 10px 10px;
   color: var(--color-text);
