@@ -2,7 +2,6 @@ import { useState } from 'react'
 import './App.css'
 import { fortunes } from './data/fortunes'
 import CherryBlossom from './components/CherryBlossom'
-import FortuneSlip from './components/FortuneSlip'
 import CherryBlossomPetals from './components/CherryBlossomPetals'
 
 function App() {
@@ -17,7 +16,7 @@ function App() {
     setGameState('CHOOSING');
   };
 
-  const handleBlossomClick = (id) => {
+  const handlePetalClick = (id) => {
     if (gameState !== 'CHOOSING') return;
 
     setSelectedId(id);
@@ -29,7 +28,7 @@ function App() {
     setTimeout(() => {
       setFortune(randomFortune);
       setGameState('REVEALED');
-    }, 1000); // slightly longer for the beautiful bloom animation
+    }, 1300);
   };
 
   const handleReset = () => {
@@ -43,9 +42,9 @@ function App() {
       <CherryBlossomPetals />
       <div className="pattern-overlay"></div>
       <header>
-        <div className="cherry-blossom">🌸</div>
-        <h1>봄맞이 벚꽃 행운 뽑기</h1>
-        <p className="subtitle">수줍은 꽃망울을 피워 당신만의 행운을 확인해 보세요</p>
+        <div className="cherry-blossom-emoji">🌸</div>
+        <h1>봄맞이 행운을 드립니다</h1>
+        <p className="subtitle">벚꽃잎을 하나 클릭하여 당신만의 행운을 확인해 보세요</p>
       </header>
 
       <main className="game-area">
@@ -64,7 +63,7 @@ function App() {
               className="start-btn"
               onClick={(e) => handleStart(e.target.previousSibling.value)}
             >
-              운세 보러가기
+              행운 확인하기
             </button>
           </div>
         )}
@@ -72,13 +71,14 @@ function App() {
         {gameState !== 'REVEALED' && gameState !== 'ENTERING_NAME' && (
           <div className={`blossoms-grid ${gameState !== 'CHOOSING' ? 'focused' : ''}`}>
             {[1, 2, 3].map((id) => {
-              if (gameState !== 'CHOOSING' && selectedId !== id) return null;
+              // During blooming, only show the selected one
+              if (gameState === 'BLOOMING' && selectedId !== id) return null;
 
               return (
                 <div key={id} className={`blossom-wrapper ${selectedId === id ? 'active' : ''}`}>
                   <CherryBlossom
                     isOpen={selectedId === id && gameState !== 'CHOOSING'}
-                    onClick={() => handleBlossomClick(id)}
+                    onClick={() => handlePetalClick(id)}
                   />
                 </div>
               );
@@ -87,12 +87,27 @@ function App() {
         )}
 
         {gameState === 'REVEALED' && (
-          <FortuneSlip message={fortune} userName={userName} onReset={handleReset} />
+          <div className="reveal-area">
+            <div className="user-name-tag">{userName}님의 벚꽃 행운</div>
+            <div className="fortune-paper-box">
+              <p className="fortune-text">"{userName}님의 찾아올 봄날은 {fortune}"</p>
+              <div className="lucky-numbers">
+                행운의 숫자: {(() => {
+                  const numbers = new Set();
+                  while (numbers.size < 6) {
+                    numbers.add(Math.floor(Math.random() * 45) + 1);
+                  }
+                  return Array.from(numbers).sort((a, b) => a - b).join(', ');
+                })()}
+              </div>
+              <button className="reset-btn" onClick={handleReset}>다른 꽃잎 뽑기</button>
+            </div>
+          </div>
         )}
       </main>
 
       <footer>
-        <p>따뜻한 봄날, 흩날리는 벚꽃잎처럼 찾아올 당신의 행운 🌸</p>
+        <p>따뜻한 봄날, 벚꽃과 함께 찾아올 당신의 행운 🌸</p>
       </footer>
     </div>
   )

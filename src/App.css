@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 1.5rem;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -13,42 +13,27 @@
   overflow-x: hidden;
 }
 
-/* Decorative background overlay */
-.pattern-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 20px solid transparent;
-  border-image: linear-gradient(to bottom, var(--color-primary), var(--color-secondary)) 1;
-  opacity: 0.15;
-  pointer-events: none;
-  z-index: -1;
-}
-
 header {
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
   text-align: center;
   position: relative;
 }
 
-.cherry-blossom {
+.cherry-blossom-emoji {
   font-size: 3.5rem;
-  margin: 0 auto 1rem;
+  margin: 0 auto 0.8rem;
   animation: float 3s ease-in-out infinite;
   display: inline-block;
-  user-select: none;
 }
 
 @keyframes float {
   0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(5deg); }
+  50% { transform: translateY(-8px) rotate(5deg); }
   100% { transform: translateY(0px) rotate(0deg); }
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 3.5rem;
   color: var(--color-text);
   margin-bottom: 0.5rem;
   font-weight: 700;
@@ -68,15 +53,16 @@ h1 {
   align-items: center;
   justify-content: center;
   position: relative;
-  min-height: 400px;
+  min-height: 350px;
   width: 100%;
 }
 
+/* Name Input Section */
 .name-input-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.2rem;
   width: 100%;
   max-width: 320px;
   animation: fadeIn 0.8s ease;
@@ -85,112 +71,143 @@ h1 {
 .name-input {
   width: 100%;
   padding: 1rem 1.5rem;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  border: 1px solid #ff91a422;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px);
   font-size: 1.1rem;
   text-align: center;
   transition: all 0.3s;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 15px rgba(255, 145, 164, 0.1);
+  color: var(--color-text);
 }
 
 .name-input:focus {
   outline: none;
   border-color: var(--color-secondary);
-  box-shadow: 0 4px 15px rgba(255, 145, 164, 0.4);
+  box-shadow: 0 4px 20px rgba(255, 145, 164, 0.3);
   transform: translateY(-2px);
 }
 
 .start-btn {
   width: 100%;
   padding: 1rem;
-  background: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
+  border-radius: 12px;
+  font-size: 1.15rem;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(255, 145, 164, 0.3);
 }
 
 .start-btn:hover {
-  background: var(--color-secondary);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(255, 145, 164, 0.4);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* Blossoms Grid */
 .blossoms-grid {
   display: flex;
+  justify-content: center;
   gap: 3rem;
   transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  perspective: 1000px;
-  /* Essential for 3D context */
 }
 
 .blossoms-grid.focused {
   gap: 0;
-  transform: translateY(-20px) scale(1.1);
+  transform: scale(1.2);
 }
 
-.blossom-wrapper {
-  display: flex;
-  justify-content: center;
-  transition: all 0.5s ease;
-  position: relative;
+/* Reveal Area */
+.reveal-area {
+  animation: fadeInDown 0.8s ease;
+  text-align: center;
+  width: 100%;
+  max-width: 450px;
+}
+
+.user-name-tag {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(255, 145, 164, 0.3);
+    z-index: 2;
+}
+
+.fortune-paper-box {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  box-shadow: 0 15px 40px rgba(255, 145, 164, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.fortune-text {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: 2rem;
+  word-break: keep-all;
+  font-weight: 500;
+}
+
+.lucky-numbers {
+    background: rgba(255, 209, 220, 0.3);
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    color: var(--color-text);
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+}
+
+.reset-btn {
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--color-secondary);
+  border: 1.5px solid var(--color-secondary);
+  border-radius: 30px;
+  padding: 0.8rem 2rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.reset-btn:hover {
+  background: var(--color-secondary);
+  color: white;
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 footer {
-  margin-top: 4rem;
-  color: #9ca3af;
-  font-size: 0.9rem;
+  margin-top: 5rem;
+  color: #947a83;
+  font-size: 0.95rem;
 }
 
 @media (max-width: 600px) {
-  .App {
-    padding: 0.5rem;
-  }
-
-  header {
-    margin-bottom: 2rem;
-  }
-
-  h1 {
-    font-size: 2.5rem;
-  }
-
-  .subtitle {
-    font-size: 1rem;
-  }
-
-  .blossoms-grid {
-    flex-direction: row;
-    /* 세로 대신 가로 유지 */
-    gap: 1rem;
-    /* 간격 축소 */
-    transform: scale(0.8);
-    /* 전체적으로 축소 */
-  }
-
-  .blossoms-grid.focused {
-    transform: translateY(-10px) scale(1);
-    gap: 0;
-  }
-
-  .game-area {
-    min-height: 300px;
-  }
+  h1 { font-size: 2.5rem; }
+  .subtitle { font-size: 1rem; }
+  .blossoms-grid { gap: 1rem; transform: scale(0.85); }
+  .fortune-text { font-size: 1.3rem; }
 }

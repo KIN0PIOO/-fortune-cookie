@@ -1,27 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './CherryBlossom.css';
+import petalImg from '../assets/petal.png';
 
 const CherryBlossom = ({ isOpen, onClick }) => {
     return (
-        <div className={`blossom-container ${isOpen ? 'open' : ''}`} onClick={onClick}>
-            {/* The Bud/Flower */}
-            <div className={`flower ${isOpen ? 'blooming' : ''}`}>
-                <div className="petal p1"></div>
-                <div className="petal p2"></div>
-                <div className="petal p3"></div>
-                <div className="petal p4"></div>
-                <div className="petal p5"></div>
-                <div className="center"></div>
+        <div className={`petal-3d-container ${isOpen ? 'open' : ''}`} onClick={onClick}>
+            {/* The Whole Petal (No splitting) */}
+            <div className="petal-main">
+                <img src={petalImg} alt="Petal" className="petal-img" />
             </div>
 
             <div className="shadow"></div>
 
-            {/* Glowing magic dusts during bloom */}
+            {/* Glowing magic particles */}
             {isOpen && (
                 <>
-                    <div className="magic-dust d1"></div>
-                    <div className="magic-dust d2"></div>
-                    <div className="magic-dust d3"></div>
+                    <div className="petal-particle p1">🌸</div>
+                    <div className="petal-particle p2">✨</div>
                 </>
             )}
         </div>
