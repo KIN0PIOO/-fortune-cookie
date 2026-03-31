@@ -2,233 +2,156 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    animation: fadeInReveal 1s ease-out;
     width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 500px;
     position: relative;
-    z-index: 10;
-    animation: fadeIn 0.5s ease;
+    padding: 2rem 1rem;
+}
+
+@keyframes fadeInReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.sakura-decor {
+    position: absolute;
+    font-size: 2rem;
+    animation: gentleRotate 5s ease-in-out infinite alternate;
+    opacity: 0.8;
+}
+
+.top-left {
+    top: -20px;
+    left: -20px;
+}
+
+.top-right {
+    top: -20px;
+    right: -20px;
+    animation-delay: 2s;
+}
+
+@keyframes gentleRotate {
+    0% { transform: rotate(-10deg) translateY(0); }
+    100% { transform: rotate(10deg) translateY(-5px); }
 }
 
 .user-name-tag {
-    font-size: 1.1rem;
-    color: var(--color-secondary, #d4af37);
-    margin-bottom: 15px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    padding: 4px 15px;
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    padding: 0.5rem 1.5rem;
     border-radius: 20px;
-    background: rgba(212, 175, 55, 0.05);
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(255, 145, 164, 0.4);
+    z-index: 2;
+    letter-spacing: 1px;
 }
 
-/* 깨진 쿠키 표시 영역 */
-.broken-cookie-display {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    /* 바닥(그림자)에 붙도록 설정 */
-    gap: 15px;
-    /* 반 조각 사이의 적절한 간격 */
-    margin-bottom: 20px;
-    width: 100%;
-    height: 160px;
-    position: relative;
-}
-
-/* 바닥 그림자 */
-.cookie-shadow {
-    position: absolute;
-    width: 140px;
-    height: 15px;
-    background: rgba(0, 0, 0, 0.15);
-    border-radius: 50%;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    filter: blur(6px);
-    z-index: 5;
-}
-
-.broken-half {
-    width: 100px;
-    height: 150px;
-    position: relative;
-    z-index: 10;
-    /* 그림자 위에 위치 */
-    overflow: visible;
-}
-
-.broken-half .cookie-img-container {
-    position: absolute;
-    top: 0;
-}
-
-.broken-half.left .cookie-img-container {
-    left: 0;
-}
-
-.broken-half.right .cookie-img-container {
-    left: -100px;
-}
-
-/* 애니메이션 개선 (더 탄력 있는 움직임) */
-.broken-half.left {
-    transform: rotate(-12deg) translateX(-5px);
-    animation: bounceLeft 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
-}
-
-.broken-half.right {
-    transform: rotate(12deg) translateX(5px);
-    animation: bounceRight 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
-}
-
-@keyframes bounceLeft {
-    from {
-        transform: rotate(0) translateX(40px) translateY(20px);
-        opacity: 0;
-    }
-
-    to {
-        transform: rotate(-12deg) translateX(-5px) translateY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes bounceRight {
-    from {
-        transform: rotate(0) translateX(-40px) translateY(20px);
-        opacity: 0;
-    }
-
-    to {
-        transform: rotate(12deg) translateX(5px) translateY(0);
-        opacity: 1;
-    }
-}
-
-/* 운세 결과 용지 */
+/* Glassmorphism Paper */
 .fortune-paper {
-    background: #fff;
-    padding: 30px;
-    border-radius: 4px;
-    /* 각진 종이 느낌 */
-    width: 85%;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(255, 145, 164, 0.15),
+                inset 0 0 20px rgba(255, 255, 255, 0.9);
+    padding: 2.5rem 2rem;
     text-align: center;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     position: relative;
-    z-index: 5;
-    background-image: linear-gradient(#f9f9f9 1px, transparent 1px);
-    background-size: 100% 2.5rem;
-    animation: slideUpFade 0.7s ease-out 0.2s both;
+    width: 100%;
+    margin-bottom: 2.5rem;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.fortune-paper:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(255, 145, 164, 0.2);
 }
 
 .fortune-header {
-    font-size: 1.3rem;
+    color: var(--color-secondary);
+    font-size: 1.5rem;
     font-weight: bold;
-    color: #8b4513;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #8b4513;
+    margin-bottom: 1.5rem;
+    position: relative;
     display: inline-block;
-    padding-bottom: 5px;
+}
+
+.fortune-header::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 10%;
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
 }
 
 .fortune-text {
-    font-size: 1.15rem;
+    font-size: 1.4rem;
     line-height: 1.8;
-    color: #333;
-    margin-bottom: 25px;
+    color: var(--color-text);
+    margin-bottom: 2rem;
+    white-space: pre-wrap;
     word-break: keep-all;
+    font-weight: 500;
 }
 
 .lucky-numbers {
-    font-size: 0.95rem;
-    color: #777;
-    margin-bottom: 30px;
+    background: rgba(255, 209, 220, 0.4);
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    color: var(--color-text);
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: 1px dashed rgba(255, 145, 164, 0.5);
+    margin-bottom: 10px;
 }
 
 .reset-btn {
-    background: #333;
-    color: #fff;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
     border: none;
-    padding: 10px 25px;
-    border-radius: 4px;
+    border-radius: 8px;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
     cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.2s;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(255, 145, 164, 0.3);
+    width: 80%;
+    max-width: 300px;
 }
 
 .reset-btn:hover {
-    background: #555;
-    transform: translateY(-1px);
+    background: linear-gradient(135deg, var(--color-secondary), #ff7b93);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(255, 145, 164, 0.4);
 }
 
-@keyframes slideUpFade {
-    from {
-        transform: translateY(30px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+.reset-btn:active {
+    transform: translateY(1px);
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-/* 모바일 대응 */
 @media (max-width: 600px) {
-    .broken-cookie-display {
-        height: 100px;
-        gap: 10px;
-        margin-bottom: 10px;
-    }
-
-    .broken-half {
-        width: 60px;
-        height: 100px;
-    }
-
-    .cookie-shadow {
-        width: 80px;
-        height: 10px;
-        bottom: 5px;
-    }
-
-    .fortune-paper {
-        padding: 20px;
-        width: 95%;
-    }
-
-    .fortune-header {
-        font-size: 1.1rem;
-        margin-bottom: 10px;
-    }
-
     .fortune-text {
-        font-size: 1rem;
-        line-height: 1.6;
-        margin-bottom: 15px;
+        font-size: 1.2rem;
     }
-
-    .lucky-numbers {
-        font-size: 0.85rem;
-        padding: 8px;
-        margin-bottom: 20px;
-    }
-
-    .reset-btn {
-        padding: 8px 20px;
-        font-size: 0.85rem;
+    
+    .fortune-paper {
+        padding: 2rem 1.5rem;
     }
 }

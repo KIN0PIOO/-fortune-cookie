@@ -1,31 +1,20 @@
 import React from 'react';
 import './FortuneSlip.css';
-import { LeftCookieHalf, RightCookieHalf } from './Cookie';
 
 const FortuneSlip = ({ message, userName, onReset }) => {
     return (
         <div className="fortune-slip-container">
-            <div className="user-name-tag">{userName}님의 운세</div>
-            {/* Broken Cookie Section (Top) - Reusing the image components */}
-            <div className="broken-cookie-display">
-                <div className="broken-half left">
-                    <div className="half-wrapper">
-                        <LeftCookieHalf />
-                    </div>
-                </div>
-                <div className="broken-half right">
-                    <div className="half-wrapper">
-                        <RightCookieHalf />
-                    </div>
-                </div>
-                <div className="cookie-shadow"></div>
-            </div>
+            {/* Sakura decorative elements */}
+            <div className="sakura-decor top-left">🌸</div>
+            <div className="sakura-decor top-right">🌸</div>
+            
+            <div className="user-name-tag">{userName}님의 행운의 편지</div>
 
-            {/* Fortune Paper Section (Bottom) */}
+            {/* Fortune Paper Section (Main Reveal) */}
             <div className="fortune-paper">
-                <div className="fortune-header">운세</div>
+                <div className="fortune-header">올해의 행운</div>
                 <div className="fortune-text">
-                    "{userName}님의 올해는 {message}"
+                    "{userName}님의 찾아올 봄날에는,<br/> {message}"
                 </div>
                 <div className="lucky-numbers">
                     행운의 숫자: {(() => {
@@ -36,9 +25,13 @@ const FortuneSlip = ({ message, userName, onReset }) => {
                         return Array.from(numbers).sort((a, b) => a - b).join(', ');
                     })()}
                 </div>
-
-                <button className="reset-btn" onClick={onReset}>다른 운세 뽑기</button>
+                
+                {/* Visual decorations for the paper */}
+                <div className="paper-decor bottom-left"></div>
+                <div className="paper-decor bottom-right"></div>
             </div>
+            
+            <button className="reset-btn" onClick={onReset}>다른 행운 꽃피우기</button>
         </div>
     );
 };

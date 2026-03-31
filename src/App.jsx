@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import './App.css'
 import { fortunes } from './data/fortunes'
-import Cookie from './components/Cookie'
+import CherryBlossom from './components/CherryBlossom'
 import FortuneSlip from './components/FortuneSlip'
 import CherryBlossomPetals from './components/CherryBlossomPetals'
 
 function App() {
-  const [gameState, setGameState] = useState('ENTERING_NAME'); // ENTERING_NAME, CHOOSING, CRACKING, REVEALED
+  const [gameState, setGameState] = useState('ENTERING_NAME'); // ENTERING_NAME, CHOOSING, BLOOMING, REVEALED
   const [userName, setUserName] = useState('');
   const [selectedId, setSelectedId] = useState(null);
   const [fortune, setFortune] = useState(null);
@@ -17,19 +17,19 @@ function App() {
     setGameState('CHOOSING');
   };
 
-  const handleCookieClick = (id) => {
+  const handleBlossomClick = (id) => {
     if (gameState !== 'CHOOSING') return;
 
     setSelectedId(id);
-    setGameState('CRACKING');
+    setGameState('BLOOMING');
 
     const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
 
-    // Animate cracking, then reveal
+    // Animate blooming, then reveal
     setTimeout(() => {
       setFortune(randomFortune);
       setGameState('REVEALED');
-    }, 800);
+    }, 1000); // slightly longer for the beautiful bloom animation
   };
 
   const handleReset = () => {
@@ -44,8 +44,8 @@ function App() {
       <div className="pattern-overlay"></div>
       <header>
         <div className="cherry-blossom">🌸</div>
-        <h1>봄맞이 포츈쿠키 EVENT</h1>
-        <p className="subtitle">쿠키를 클릭하여 행운을 확인해 보세요</p>
+        <h1>봄맞이 벚꽃 행운 뽑기</h1>
+        <p className="subtitle">수줍은 꽃망울을 피워 당신만의 행운을 확인해 보세요</p>
       </header>
 
       <main className="game-area">
@@ -70,15 +70,15 @@ function App() {
         )}
 
         {gameState !== 'REVEALED' && gameState !== 'ENTERING_NAME' && (
-          <div className={`cookies-grid ${gameState !== 'CHOOSING' ? 'focused' : ''}`}>
+          <div className={`blossoms-grid ${gameState !== 'CHOOSING' ? 'focused' : ''}`}>
             {[1, 2, 3].map((id) => {
               if (gameState !== 'CHOOSING' && selectedId !== id) return null;
 
               return (
-                <div key={id} className={`cookie-wrapper ${selectedId === id ? 'active' : ''}`}>
-                  <Cookie
+                <div key={id} className={`blossom-wrapper ${selectedId === id ? 'active' : ''}`}>
+                  <CherryBlossom
                     isOpen={selectedId === id && gameState !== 'CHOOSING'}
-                    onClick={() => handleCookieClick(id)}
+                    onClick={() => handleBlossomClick(id)}
                   />
                 </div>
               );
@@ -92,7 +92,7 @@ function App() {
       </main>
 
       <footer>
-        <p>따뜻한 봄날, 당신만의 행운을 확인하세요 🌸</p>
+        <p>따뜻한 봄날, 흩날리는 벚꽃잎처럼 찾아올 당신의 행운 🌸</p>
       </footer>
     </div>
   )

@@ -1,0 +1,126 @@
+.blossom-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.blossom-container:hover {
+    transform: translateY(-5px) scale(1.05);
+}
+
+/* Base flower setting */
+.flower {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform: scale(0.8);
+}
+
+.blossom-container.open .flower {
+    transform: scale(1.5) rotate(15deg);
+}
+
+/* Petals */
+.petal {
+    position: absolute;
+    width: 40px;
+    height: 60px;
+    background: linear-gradient(135deg, #ffb7c5, #ff91a4);
+    border-radius: 50% 50% 10% 10%;
+    transform-origin: bottom center;
+    top: -20px;
+    left: 10px;
+    box-shadow: 0 0 10px rgba(255, 145, 164, 0.3);
+    transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    opacity: 0.9;
+}
+
+/* Small indentation at the top of petal (cherry blossom signature) */
+.petal::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 15px;
+    background: var(--color-bg); /* Match app background to cut out */
+    border-radius: 50%;
+    transition: all 0.8s ease;
+}
+
+/* Initial closed bud state (petals wrapped tightly) */
+.p1 { transform: rotate(0deg) scaleY(0.6); z-index: 5; }
+.p2 { transform: rotate(72deg) scaleY(0.6); z-index: 4; }
+.p3 { transform: rotate(144deg) scaleY(0.6); z-index: 3; }
+.p4 { transform: rotate(216deg) scaleY(0.6); z-index: 2; }
+.p5 { transform: rotate(288deg) scaleY(0.6); z-index: 1; }
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 15px;
+    height: 15px;
+    background: #ffccb6;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #ff91a4;
+    z-index: 6;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+/* Blooming (open) state */
+.flower.blooming .p1 { transform: rotate(0deg) translateY(-25px) scale(1); }
+.flower.blooming .p2 { transform: rotate(72deg) translateY(-25px) scale(1); }
+.flower.blooming .p3 { transform: rotate(144deg) translateY(-25px) scale(1); }
+.flower.blooming .p4 { transform: rotate(216deg) translateY(-25px) scale(1); }
+.flower.blooming .p5 { transform: rotate(288deg) translateY(-25px) scale(1); }
+.flower.blooming .center { opacity: 1; }
+
+/* The shadow under the bud/flower */
+.shadow {
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 15px;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 50%;
+    filter: blur(4px);
+    transition: width 0.8s ease, background 0.8s ease;
+}
+
+.blossom-container.open .shadow {
+    width: 120px;
+    background: rgba(255, 145, 164, 0.2);
+}
+
+/* Magic dust animation when blooming */
+.magic-dust {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ffb7c5, 0 0 20px #ffb7c5;
+    opacity: 0;
+    z-index: 10;
+}
+
+.d1 { animation: float-up 1.5s ease-out forwards; left: 30%; top: 40%; }
+.d2 { animation: float-up 1.8s ease-out forwards 0.2s; left: 70%; top: 30%; }
+.d3 { animation: float-up 1.4s ease-out forwards 0.1s; left: 50%; top: 10%; }
+
+@keyframes float-up {
+    0% { transform: translateY(0) scale(0.5); opacity: 1; }
+    100% { transform: translateY(-50px) scale(1.5); opacity: 0; }
+}
